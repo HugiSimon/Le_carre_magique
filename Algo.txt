@@ -1,0 +1,145 @@
+Algorythme Carré magique
+//BUT Faire un joli carré magique
+//ENTRE Rien 
+//SORTIE Un carré très joli
+
+CONST : TAILLE 7
+
+PROCEDURE initialiser (VAR tablo : Tableau)
+
+    VAR n_i, n_j : ENTIER
+
+    DEBUT
+
+        TANTQUE n_i < TAILLE FAIRE PAS DE 1
+            TANTQUE n_j < TAILLE FAIRE PAS DE 1
+
+                tablo[n_i][n_j] <- 0
+            
+            FIN TANTQUE
+        FIN TANTQUE
+    
+    FIN PROCEDURE
+
+
+PROCEDURE avancer (VAR vide : ENTIER ; posi[2] : Tableau d'ENTIER)
+
+    DEBUT
+
+        posi[1] <- posi[1] - 1
+        posi[2] <- posi[2] + 1
+
+        SI vide == 0
+        ALORS
+
+            posi[1] <- posi[1] - 2
+
+        FINSI
+
+        SI posi[2] == - 1
+        ALORS
+
+            posi[2] <- TAILLE - 1
+        
+        ELIF posi[2] == TAILLE
+        ALORS
+
+            posi[2] <- 0
+        
+        FINSI
+
+        SI posi[1] == -1
+        ALORS
+
+            posi[1] <- TAILLE - 1
+
+        ELIF posi[1] == TAILLE
+        ALORS
+
+            POSI[1] <- 0
+
+        FINSI
+
+    FIN PROCEDURE
+
+
+FONCTION rechercheVide (VAR tablo[TAILLE][TAILLE], posi[2] : Tableau d'ENTIER) : ENTIER
+
+    DEBUT
+
+        SI tablo[posi[1]][posi[2]] != 0
+        ALORS
+
+            rechercheVide <- 0
+
+        SINON
+
+            rechercheVide <- 1
+
+        FINSI
+    
+    FIN PROCEDURE
+
+
+PROCEDURE placer (VAR n_nom : ENTIER ; table[TAILLE][TAILLE], posi[2] : Tableau d'ENTIER)
+
+    DEBUT
+
+        table[posi[1]][posi2] <- n_nom
+
+    
+    FIN PROCEDURE
+
+
+PROCEDURE afficher (VAR tablo[LONG][LONG] : Tableau d'ENTIER)
+
+    VAR n_i, n_j : ENTIER
+
+    DEBUT
+
+        POUR n_i < TAILLE FAIRE PAS DE 1
+            POUR n_j < TAILLE FAIRE PAS DE 1
+
+                SI tablo[n_i][n_j] > 9
+                ALORS
+
+                    ECRIRE tablo[n_i][n_j]
+
+                SINON
+
+                    ECRIRE " " + tablo[n_i][n_j]
+
+                FINSI
+            
+            FINPOUR
+            ECRIRE "\n"
+        FINPOUR
+
+    FIN PROCEDURE
+
+
+//Programme principale
+
+VAR n_incr : ENTIER
+    pos[2], magic[LONG][LONG] : Tableau d'ENTIER
+
+DEBUT
+
+    initialiser(magic)
+
+    POUR n_incr <= TAILLE * TAILLE FAIRE PAS DE 1
+
+        avancer(1, pos)
+
+        SI rechercheVide(magic, pos) == 0
+        ALORS
+
+            avancer(0, pos)
+
+        placer(magic, n_incr, pos)
+
+    FINPOUR
+
+    afficher(magic)
+
+FIN

@@ -73,14 +73,14 @@ Sorties : La nouvelle position
 Description : C'est long, regardez les commentaires
 ***********************************************/
 
-void avancer(int droite, int posi[2]){
+void avancer(int vide, int posi[2]){
 
 
 
     posi[0] = posi[0] - 1; //A chaque fois, on va au Nord une fois
     posi[1] = posi[1] + 1; //Et a l'Est une fois
 
-    if(droite == 0){ //On verifie le booleen, si il est faut, on revient deux fois a l'Ouest
+    if(vide == 0){ //On verifie le booleen, si il est faut, on revient deux fois a l'Ouest
         posi[1] = posi[1] - 2;
     }
 
